@@ -21,8 +21,18 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
-
-
+% first layer
+a1 = X; % 5000 sets of 400 pixel features
+a1 = [ones(size(a1,1), 1) a1]; % add bias feature
+% second layer
+z2 = Theta1*a1';
+a2 = sigmoid(z2); % 25 second layer features for each of the 5000 data sets
+a2 = [ones(size(a2,2), 1)'; a2]; % add bias feature
+% third layer
+z3 = Theta2*a2;
+a3 = sigmoid(z3);% 10 class probabilities for each of the 5000 data sets
+% predictions
+[max_probabilities, p] = max(a3', [], 2);
 
 
 
