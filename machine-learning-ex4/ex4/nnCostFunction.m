@@ -71,30 +71,32 @@ z_3 = Theta2*a_2;
 a_3 = sigmoid(z_3); % 10 units by 5000 sets
 hyp = a_3;
 
-% cost function
+% cost function and gradients
+J = 0;
+Delta_2 = zeros(size(Theta2));
+Delta_1 = zeros(size(Theta1));
 for i=1:m
-   set_y = zeros(1, num_labels); % recoded training set y
-   set_y(y(i)) = 1;
-   set_hyp = hyp(:,i); % training set hypothesis
-   J = J + (-set_y*log(set_hyp)-(1-set_y)*log(1-set_hyp));
+   y_i = zeros(1, num_labels); % recoded output
+   y_i(y(i)) = 1;
+   hyp_i = hyp(:,i); % hypothesis
+   J = J + (-y_i*log(hyp_i)-(1-y_i)*log(1-hyp_i)); % update cost
+   % layer errors
+   delta_3_i = hyp_i-y_i';
+   delta_2_i = (Theta2(:,2:end)'*delta_3_i).*sigmoidGradient(z_2(:,i)); 
+   % accumulate gradients
+   Delta_2 = Delta_2 + delta_3_i*a_2(:,i)';
+   Delta_1 = Delta_1 + delta_2_i*a_1(i,:);
 end
-J = (1/m)*J;
 
+% unregularized cost function
+J = (1/m)*J;
 % regularized cost function
 reg = lambda/(2*m)*(sum(sum(Theta1(:, 2:end).^2)) + sum(sum(Theta2(:, 2:end).^2))); % regularization term
 J = J + reg;
 
-
-
-
-
-
-
-
-
-
-
-
+% unregularized gradients
+Theta1_grad = (1/m)*Delta_1;
+Theta2_grad = (1/m)*Delta_2;
 
 
 % -------------------------------------------------------------
