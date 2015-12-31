@@ -75,10 +75,13 @@ hyp = a_3;
 for i=1:m
    set_y = zeros(1, num_labels); % recoded training set y
    set_y(y(i)) = 1;
-   set_hyp = hyp(:,i); 
-   J = J + et_y
+   set_hyp = hyp(:,i); % training set hypothesis
+   J = J + (-set_y*log(set_hyp)-(1-set_y)*log(1-set_hyp));
 end
+J = (1/m)*J;
 
+% regularized cost function
+reg = 
 
 
 

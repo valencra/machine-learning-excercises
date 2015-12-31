@@ -80,6 +80,9 @@ for i=1:m
 end
 J = (1/m)*J;
 
+% regularized cost function
+reg = lambda/(2*m)*(sum(sum(Theta1(:, 2:end).^2)) + sum(sum(Theta2(:, 2:end).^2))); % regularization term
+J = J + reg;
 
 
 
