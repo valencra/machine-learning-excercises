@@ -97,6 +97,11 @@ J = J + reg;
 % unregularized gradients
 Theta1_grad = (1/m)*Delta_1;
 Theta2_grad = (1/m)*Delta_2;
+% regularized gradients
+Theta1_grad(:,1) = (1/m)*Delta_1(:,1); % j = 0 
+Theta1_grad(:,2:end) = (1/m)*Delta_1(:,2:end) + (lambda/m)*Theta1(:,2:end); % j >= 1 
+Theta2_grad(:,1) = (1/m)*Delta_2(:,1); % j = 0 
+Theta2_grad(:,2:end) = (1/m)*Delta_2(:,2:end) + (lambda/m)*Theta2(:,2:end); % j >= 1 
 
 
 % -------------------------------------------------------------

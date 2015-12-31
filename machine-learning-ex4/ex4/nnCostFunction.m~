@@ -82,12 +82,10 @@ for i=1:m
    J = J + (-y_i*log(hyp_i)-(1-y_i)*log(1-hyp_i)); % update cost
    % layer errors
    delta_3_i = hyp_i-y_i';
-   sig_grad_i = sigmoidGradient(z_2(:,i))
-   delta_2_i = (Theta2'*delta_3_i).*; 
-   delta_2_i = delta_2_i(2:end); % remove bias
+   delta_2_i = (Theta2(:,2:end)'*delta_3_i).*sigmoidGradient(z_2(:,i)); 
    % accumulate gradients
-   Delta_2 = Delta_2 + delta_3_i*a_2(:,i)'
-   Delta_1 = Delta_1 + delta_2_i*a_1(:,i)'
+   Delta_2 = Delta_2 + delta_3_i*a_2(:,i)';
+   Delta_1 = Delta_1 + delta_2_i*a_1(i,:);
 end
 
 % unregularized cost function
@@ -99,6 +97,11 @@ J = J + reg;
 % unregularized gradients
 Theta1_grad = (1/m)*Delta_1;
 Theta2_grad = (1/m)*Delta_2;
+% regularized gradients
+Theta1_grad(:,1) = (1/m)*Delta_1(:,1); % j = 0 
+Theta1_grad(:,2:end) = (1/m)*Delta_1(:,2:end) + (lambda/m)*Theta1(:,2:end);
+Theta2_grad(:,1) = (1/m)*Delta_2(:,1);
+Theta2_grad(:,2:end) = (1/m)*Delta_2(:,2:end) + (lambda/m)*Theta2(:,2:end);
 
 
 % -------------------------------------------------------------
