@@ -39,14 +39,15 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
-
-
-
-
-
-
-
-
+% get errors for every regularization value
+for i=1:length(lambda_vec)
+   lambda = lambda_vec(i); 
+   % get parameters
+   theta = trainLinearReg(X, y, lambda);
+   % get errors; lambda = 0 on errors
+   [error_train(i), grad] = linearRegCostFunction(X, y, theta, 0);
+   [error_val(i), grad] = linearRegCostFunction(Xval, yval, theta, 0);
+end
 
 % =========================================================================
 
