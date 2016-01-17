@@ -22,28 +22,17 @@ sigma = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
 %  Note: You can compute the prediction error using 
 %        mean(double(predictions ~= yval))
 %
-
-% find the best error and its corresponding C and sigma
-best_error = 1e9;
-best_C = 0;
-best_sigma = 0;
-% iterate over every C and sigma combination
-for C_i=1:length(C)
-    for sigma_i=1:length(sigma)
-        % train, predict and get error
-        model= svmTrain(X, y, C(C_i), @(x1, x2) gaussianKernel(x1, x2, sigma(sigma_i)));
+variable_error_map = zeros((length(C)*length(sigma)), 3)
+cur
+for C_i=1:length(C):
+    for sigma_i=1:length(sigma):
+        model= svmTrain(X, y, C(C_i), @(x1, x2) gaussianKernel(x1, x2, sigma(sigma_i));
         predictions = svmPredict(model, Xval);
         prediction_error = mean(double(predictions~=yval));
-        if(prediction_error<best_error)
-           best_error = prediction_error;
-           best_C = C(C_i); 
-           best_sigma = sigma(sigma_i); 
-        end
+        variable_error_map((C_i-1)*8+sigma_i) = [C(C_i) sigma(sigma_i) prediction_error];
     end
-    end
-% return the optimal C and sigma values
-C = best_C;
-sigma = best_sigma;
+end
+
 % =========================================================================
 
 end
