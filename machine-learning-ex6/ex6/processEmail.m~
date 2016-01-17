@@ -98,7 +98,7 @@ while ~isempty(email_contents)
     %
     [word_in_dict, word_index] = ismember(str, vocabList);
     if(word_in_dict)
-        word_indices = [word_indices; word_index];
+        word_indices() word_index);
     end
 
     % =============================================================
