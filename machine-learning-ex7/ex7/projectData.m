@@ -18,8 +18,8 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
-
-
+% get all K projections for all m data sets
+Z = X*U(:, 1:K);
 
 % =============================================================
 
