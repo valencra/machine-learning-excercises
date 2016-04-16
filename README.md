@@ -1,5 +1,16 @@
-# machine-learning-excercises
+# machine-learning-exercises
 
-My solutions to the Stanford University/Coursera Machine Learning course by Andrew Ng.
+My exercise solutions for the Stanford University/Coursera Machine Learning course by Andrew Ng.
 
 All solutions are written in MATLAB.
+
+## List of Excercises by Concept
+
+1. Linear Regression 
+2. Logistic Regression
+3. Multi-class Classification and Neural Networks
+4. Neural Network Learning
+5. Regularized Linear Regression and Bias/Variance
+6. Support Vector Machines (SVM)
+7. K-Means Clustering and Principal Component Analysis (PCA)
+8. Anomaly Detection and Recommender Systems
