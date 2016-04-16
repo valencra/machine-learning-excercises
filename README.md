@@ -1,6 +1,6 @@
 # machine-learning-exercises
 
-My exercise solutions for the Stanford University/Coursera Machine Learning course by Andrew Ng.
+My exercise solutions for the Stanford University on Coursera Machine Learning course by Andrew Ng.
 
 All solutions are written in MATLAB.
 
