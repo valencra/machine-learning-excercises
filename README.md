@@ -4,8 +4,6 @@ Exercise solutions for Andrew Ng's Stanford University/Coursera Machine Learning
 
 All solutions are written in MATLAB.
 
-View my certificate: https://www.coursera.org/account/accomplishments/certificate/93HQQ5447JUQ
-
 ## List of Excercises by Concept
 
 1. Linear Regression 
